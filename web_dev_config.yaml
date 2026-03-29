@@ -1,0 +1,10 @@
+# Flutter web dev server only (`flutter run -d chrome` in debug).
+# Proxies same-origin /api/* → FastAPI so the browser does not call 127.0.0.1 directly
+# (avoids Chrome private-network / cross-origin issues).
+# If you change the API port (backend: set PORT=...), update the target URL and
+# lib/api_config.dart kApiDefaultPort to match.
+server:
+  proxy:
+    - target: "http://127.0.0.1:8000/"
+      prefix: "/api/"
+      replace: ""
